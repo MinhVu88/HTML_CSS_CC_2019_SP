@@ -1,0 +1,229 @@
+/* css reset (for resetting some browser default styles) */
+body, ul, li, h1, h2, a {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* position: fixed */
+header {
+    background: #f63232;
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+
+header h1 {
+    color: white;
+    border: 8px solid white;
+    padding: 6px 12px;
+    display: inline-block;
+    border-radius: 36px;
+}
+
+/* position: relative */
+.banner {position: relative;}
+
+.banner img {max-width: 100%;}
+
+/* position: absolute */
+.banner .welcome {
+    position: absolute;
+    left: 0;
+    top: 30%;
+    background: #feb614;
+    color: white;
+    padding: 30px;
+}
+
+.banner h2 {font-size: 74px;}
+
+.banner h2 span {font-size: 1.3em;}
+
+/* position: sticky */
+nav {
+    background: #f4f4f4;
+    padding: 20px;
+    /* when the nav bar is 148px from the page's top, its position becomes sticky & gets fixed to the header */
+    position: sticky;
+    top: 105px; 
+}
+
+nav ul {
+    /* https://www.w3schools.com/cssref/pr_text_white-space.asp */
+    white-space: nowrap; 
+    /* max-width & margin are specified this way to place the li tags on the nav bar at the center of the web page */
+    /* for example, when the viewport/browser is 2000 px wide & nav's max width is 1200 px -> nav still fits on the page */
+    /* but it may not be at the center of the page */
+    /* the 'auto' keyword does the trick as it makes nav's left & right margins equally distributed */
+    /* so in this case, the left & right margins would be 400 px each ((2000 - 1200) / 2 = 400) */
+    /* ref: #8 - css layout & positions (22:00) */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+nav li {
+    display: inline-block;
+    width: 25%;
+    font-size: 24px;
+}
+
+nav li a {
+    text-decoration: none;
+    color: #4b4b4b;
+}
+
+nav li a.join {color: #f63232;}
+
+main {
+    /* the reason for specifying main's max-width & width like this is for browser/viewport flexibility */
+    /* for example, when the browser is 2000 px wide, main's width is 1200 px, main's left & right margins are set to auto */
+    /* -> the main contents still fits within the web page */
+    /* but when the browser is just 800 px wide for example, then main's max-width takes effect */
+    /* -> the max value of main's width then is 800 px, not 1200 px -> main contents will still fit within the viewport */
+    max-width: 100%;
+    width: 1200px;
+    margin: 80px auto;
+    padding: 0 40px;
+    /* so even though max-width, width & margin are all set as such to make the main contents central on the page, problems still can arise */
+    /* with the left & right padding values added to main's width, the contents would be pushed off the page if the browser shrank */
+    /* -> max-width + padding > total width */
+    /* the box-sizing property with its value, border-box, solves this problem */
+    /* so what box-sizing does is it incorporates the padding values into main's total width -> max-width + padding = total width */
+    /* https://www.w3schools.com/css/css3_box-sizing.asp */
+    box-sizing: border-box;
+}
+
+article h2 {
+    color: #f63232;
+    font-size: 48px;
+}
+
+article p {
+    /* how em units are measured: the default font size of the p tag (16 px) times the em units -> 16 px * 2 em = 32px */
+    line-height: 2em;
+    color: #4b4b4b;
+}
+
+.images {
+    text-align: center;
+    margin: 80px 0;
+    white-space: nowrap;
+}
+
+.images li {
+    display: inline-block;
+    /* each li tag takes up 40% of the page's width, 2 of them make up 80% */
+    /* the remaining 20% come from the left & right margin values of each li (5% * 4 = 20%) */
+    width: 40%;
+    margin: 20px 5%;
+}
+
+/* by default, each img tag's max width is each pic's own full size */
+/* by setting each img tag's max width 100%, each img's size is now equal to each li tag's size */
+/* the li tags are the parents of the img tags */
+.images li img {max-width: 100%;}
+
+section.join {
+    background: #f4f4f4;
+    color: #4b4b4b;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.join h2 {font-size: 36px;}
+
+form input {
+    margin: 20px 0;
+    padding: 10px 20px;
+    font-size: 24px;
+    border-radius: 28px;
+    border: 4px solid white;
+}
+
+footer {
+    background: #f63232;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Pseudo Classes */
+nav li a:hover {text-decoration: underline;}
+
+.images li:hover {
+    position: relative;
+    top: -10px; /* move each pic 4px upwards */
+}
+
+form input:focus {
+    border: 4px dashed #4b4b4b;
+    outline: none;
+}
+
+form input:valid {border: 4px solid #71d300;}
+
+nav li:first-child {border: 3px solid #f63232;}
+
+/* Pseudo Elements */
+article p::first-line {
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+section.join p::first-letter {font-size: 3em;}
+
+section.join p::selection {
+    background: #f63232;
+    color: white;
+}
+
+p::after {content: '....etc.';}
+
+/* Responsive design: media queries */
+@media screen and (max-width: 1400px) {
+    .banner .welcome h2 {font-size: 60px;}
+
+    nav li {font-size: 18px;}
+}
+
+@media screen and (max-width: 960px) {
+    .banner .welcome h2 {font-size: 40px;}
+}
+
+@media screen and (max-width: 700px) {
+    .banner .welcome {
+        position: static;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .banner .welcome br {display: none;}
+
+    .banner .welcome h2 {font-size: 25px;}
+
+    .banner .welcome span {font-size: 1em;}
+
+    .images li {
+        display: block;
+        width: 100%;
+        margin: 20px auto;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    nav li {
+        font-size: 20px;
+        display: block;
+        width: 100%;
+        margin: 12px 0;
+    }
+
+    header {position: relative;}
+
+    nav {top: 0;}
+}
