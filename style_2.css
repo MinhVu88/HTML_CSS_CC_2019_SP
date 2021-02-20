@@ -59,18 +59,18 @@ a[href$='Johan_Liebert'] {
 
 /* CSS inheritance */
 div {
-    color: lightcoral;
-    border: 2px solid gray;
-    margin: 40px;
-    font-weight: bold;
+	color: lightcoral;
+	border: 2px solid gray;
+	margin: 40px;
+	font-weight: bold;
 }
 
 div p {
-    border: inherit;
-    margin: inherit;
-    color: crimson;
+	border: inherit;
+	margin: inherit;
+	color: crimson;
 }
 
 p {
-    color: greenyellow;
+	color: greenyellow;
 }
